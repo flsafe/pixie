@@ -1,1 +1,1 @@
-python ../externals/pypy/rpython/bin/rpython --continuation --no-shared --lldebug target.py
+python ../externals/pypy/rpython/bin/rpython --continuation --no-shared --lldebug --thread target.py
