@@ -5,6 +5,10 @@ EXTERNALS=../externals
 PYTHON ?= pypy
 PYTHONPATH=$$PYTHONPATH:$(EXTERNALS)/pypy
 
+COMMON_BUILD_OPT="--thread --no-shared"
+JIT_OPT="--opt=jit"
+TARGET_OPT="target.py"
+
 help:
 	@echo "make help              - display this message"
 	@echo "make run               - run the compiled interpreter"
@@ -12,17 +16,8 @@ help:
 	@echo "make build_with_jit    - build with jit enabled"
 	@echo "make build_no_jit      - build without jit"
 
-build_with_jit: fetch_externals
-	$(PYTHON) $(EXTERNALS)/pypy/rpython/bin/rpython --opt=jit --thread --no-shared target.py
-
-build_no_jit: fetch_externals
-	$(PYTHON) $(EXTERNALS)/pypy/rpython/bin/rpython --thread --no-shared target.py
-
-build_preload_with_jit: fetch_externals
-	$(PYTHON) $(EXTERNALS)/pypy/rpython/bin/rpython --opt=jit --thread --no-shared target_preload.py
-
-build_preload_no_jit: fetch_externals
-	$(PYTHON) $(EXTERNALS)/pypy/rpython/bin/rpython --thread --no-shared target_preload.py
+build: fetch_externals
+	$(PYTHON) $(EXTERNALS)/pypy/rpython/bin/rpython $(COMMON_BUILD_OPT) $(JIT_OPT) $(TARGET_OPT)
 
 fetch_externals: $(EXTERNALS)/pypy
 

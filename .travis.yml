@@ -1,6 +1,15 @@
+env:
+  - JIT_OPT:
+    - --opt-jit
+    - ''
+
+  - TARGET_OPT:
+    - target.py
+    - preload_target.py
+
 script:
   - ./checkout-externals
-  - ./make-with-jit
+  - make build $JIT_OPT $TARGET_OPT
   - make run_built_tests
 
 before_install:
