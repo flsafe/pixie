@@ -2,7 +2,7 @@ all: help
 
 EXTERNALS=../externals
 
-PYTHON ?= pypy
+PYTHON ?= python
 PYTHONPATH=$$PYTHONPATH:$(EXTERNALS)/pypy
 
 COMMON_BUILD_OPT = --thread --no-shared
