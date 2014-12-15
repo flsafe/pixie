@@ -22,4 +22,4 @@ os:
   - osx
 
 notifications:
-  irc: "chat.freenode.net#pixie-lang"
+  # irc: "chat.freenode.net#pixie-lang"
