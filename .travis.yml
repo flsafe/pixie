@@ -2,7 +2,7 @@ JIT_OPT:
   - --opt-jit
   - ''
 
-- TARGET_OPT:
+TARGET_OPT:
   - target.py
   - preload_target.py
 
