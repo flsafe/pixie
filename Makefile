@@ -5,9 +5,9 @@ EXTERNALS=../externals
 PYTHON ?= pypy
 PYTHONPATH=$$PYTHONPATH:$(EXTERNALS)/pypy
 
-COMMON_BUILD_OPT="--thread --no-shared"
-JIT_OPT="--opt=jit"
-TARGET_OPT="target.py"
+COMMON_BUILD_OPT = --thread --no-shared
+JIT_OPT = --opt=jit
+TARGET_OPT = target.py
 
 help:
 	@echo "make help              - display this message"
@@ -30,6 +30,9 @@ $(EXTERNALS)/pypy:
 	tar -jxf ../pypy.tar.bz2 --strip-components=1
 
 run:
+	./pixie-vm
+
+pixie-vm:
 	./pixie-vm
 
 run_interactive:
