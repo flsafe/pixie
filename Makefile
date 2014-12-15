@@ -19,10 +19,10 @@ help:
 pixie-vm: fetch_externals
 	$(PYTHON) $(EXTERNALS)/pypy/rpython/bin/rpython $(COMMON_BUILD_OPT) $(JIT_OPT) $(TARGET_OPT)
 
-.PHONY fetch_externals
+.PHONY: fetch_externals
 fetch_externals: $(EXTERNALS)/pypy
 
-.PHONY fetch_externals
+.PHONY: fetch_externals
 fetch_externals: $(EXTERNALS)/pypy
 $(EXTERNALS)/pypy:
 	mkdir $(EXTERNALS); \
@@ -32,18 +32,18 @@ $(EXTERNALS)/pypy:
 	cd pypy; \
 	tar -jxf ../pypy.tar.bz2 --strip-components=1
 
-.PHONY run
+.PHONY: run
 run:
 	./pixie-vm
 
-.PHONY run_interactive
+.PHONY: run_interactive
 run_interactive:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) target.py
 
-.PHONY run_built_tests
+.PHONY: run_built_tests
 run_built_tests: pixie-vm
 	./pixie-vm run-tests.pxi
 
-.PHONY run_interpreted_tests
+.PHONY: run_interpreted_tests
 run_interpreted_tests:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) target.py run-tests.pxi
