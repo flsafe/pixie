@@ -9,7 +9,7 @@ env:
 
 script:
   - ./checkout-externals
-  - make build $JIT_OPT $TARGET_OPT
+  - make pixie-vm $JIT_OPT $TARGET_OPT
   - make run_built_tests
 
 before_install:

@@ -16,11 +16,14 @@ help:
 	@echo "make build_with_jit    - build with jit enabled"
 	@echo "make build_no_jit      - build without jit"
 
-build: fetch_externals
+pixie-vm: fetch_externals
 	$(PYTHON) $(EXTERNALS)/pypy/rpython/bin/rpython $(COMMON_BUILD_OPT) $(JIT_OPT) $(TARGET_OPT)
 
+.PHONY fetch_externals
 fetch_externals: $(EXTERNALS)/pypy
 
+.PHONY fetch_externals
+fetch_externals: $(EXTERNALS)/pypy
 $(EXTERNALS)/pypy:
 	mkdir $(EXTERNALS); \
 	cd $(EXTERNALS); \
@@ -29,17 +32,18 @@ $(EXTERNALS)/pypy:
 	cd pypy; \
 	tar -jxf ../pypy.tar.bz2 --strip-components=1
 
+.PHONY run
 run:
 	./pixie-vm
 
-pixie-vm:
-	./pixie-vm
-
+.PHONY run_interactive
 run_interactive:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) target.py
 
+.PHONY run_built_tests
 run_built_tests: pixie-vm
 	./pixie-vm run-tests.pxi
 
-run_interpreted_tests: target.py
+.PHONY run_interpreted_tests
+run_interpreted_tests:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) target.py run-tests.pxi
