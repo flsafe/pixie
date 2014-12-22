@@ -7,6 +7,8 @@ from pixie.vm.code import intern_var
 import pixie.vm.rt as rt
 rt.init()
 
+exit(1)
+
 load_path.set_root(rt.wrap(u"./"))
 LOAD_PATHS.set_root(Atom(EMPTY_VECTOR.conj(rt.wrap(u"./"))))
 load_stdlib()
